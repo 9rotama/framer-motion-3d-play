@@ -11,7 +11,7 @@ export default function LikeButton() {
 
   return (
     <>
-      <motion.div
+      <motion.button
         className={styles.button}
         animate={[isHover ? "hover" : "", isLiked ? "liked" : ""]}
         variants={{
@@ -35,7 +35,7 @@ export default function LikeButton() {
         >
           {isLiked ? "Liked" : "Like"}
         </motion.p>
-      </motion.div>
+      </motion.button>
     </>
   );
 }
