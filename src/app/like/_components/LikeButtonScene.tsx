@@ -2,6 +2,7 @@
 
 import { useFBX } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Variant } from "framer-motion";
 import { motion } from "framer-motion-3d";
 import { Mesh } from "three";
 import LikeButtonHeartMaterial from "./LikeButtonHeartMaterial";
@@ -20,12 +21,16 @@ export default function LikeButtonScene({ isHover, isLiked }: Props) {
   return (
     <Canvas>
       <motion.group
-        animate={[isHover ? "hover" : ""]}
+        animate={[isLiked ? "liked" : "", isHover ? "hover" : ""]}
         variants={{
+          liked: {
+            y: 7,
+          },
           hover: {
             scale: 1.2,
           },
         }}
+        transition={{ ease: "easeOut" }}
       >
         <motion.mesh
           geometry={geometry}
@@ -43,10 +48,56 @@ export default function LikeButtonScene({ isHover, isLiked }: Props) {
         >
           <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
         </motion.mesh>
-        <pointLight intensity={10.0} position={[0, 0.2, 4]} />
-        <pointLight intensity={10.0} position={[3, 0, 4]} />
       </motion.group>
-      <ambientLight intensity={1.0} />
+
+      <motion.group
+        position={[0, -7, 0]}
+        animate={[isLiked ? "liked" : ""]}
+        variants={{
+          liked: {
+            y: 0,
+          },
+        }}
+        transition={{ ease: "easeOut" }}
+      >
+        <motion.mesh
+          geometry={geometry}
+          position={[-1.45, 1.5, 0]}
+          scale={0.03}
+          rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+        >
+          <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
+        </motion.mesh>
+        <motion.mesh
+          geometry={geometry}
+          position={[1.45, 0, 0]}
+          scale={0.03}
+          rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+        >
+          <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
+        </motion.mesh>
+        <motion.mesh
+          geometry={geometry}
+          position={[-1.45, -1.5, 0]}
+          scale={0.03}
+          rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+        >
+          <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
+        </motion.mesh>
+      </motion.group>
+
+      <pointLight intensity={10.0} position={[0, 0.2, 4]} />
+      <pointLight intensity={10.0} position={[3, 0, 4]} />
+
+      <motion.ambientLight
+        animate={[isLiked ? "liked" : ""]}
+        intensity={2.0}
+        variants={{
+          liked: {
+            intensity: 10,
+          } as Variant,
+        }}
+      />
       <hemisphereLight intensity={2.0} />
     </Canvas>
   );
