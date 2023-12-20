@@ -55,7 +55,7 @@ export default function LikeButtonScene({ isHover, isLiked }: Props) {
         animate={[isLiked ? "liked" : ""]}
         variants={{
           liked: {
-            y: 0,
+            y: -0.3,
           },
         }}
         transition={{ ease: "easeOut" }}
@@ -65,22 +65,50 @@ export default function LikeButtonScene({ isHover, isLiked }: Props) {
           position={[-1.45, 1.5, 0]}
           scale={0.03}
           rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+          animate={[isLiked ? "liked" : ""]}
+          variants={{
+            liked: {
+              rotateZ: initialRotation.z + Math.PI,
+              y: 1.5,
+              transition: { ease: "easeOut", duration: 0.3 },
+            },
+          }}
+          transition={{ ease: "easeOut", duration: 0.1 }}
         >
           <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
         </motion.mesh>
         <motion.mesh
           geometry={geometry}
-          position={[1.45, 0, 0]}
-          scale={0.03}
+          position={[1.35, -2.5, 0]}
+          scale={0.025}
           rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+          animate={[isLiked ? "liked" : ""]}
+          variants={{
+            liked: {
+              rotateZ: initialRotation.z + Math.PI,
+              y: 0,
+              transition: { ease: "easeOut", duration: 0.4 },
+            },
+          }}
+          transition={{ ease: "easeOut", duration: 0.1 }}
         >
           <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
         </motion.mesh>
         <motion.mesh
           geometry={geometry}
-          position={[-1.45, -1.5, 0]}
-          scale={0.03}
+          position={[-1.25, -4, 0]}
+          scale={0.02}
           rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
+          animate={[isLiked ? "liked" : ""]}
+          variants={{
+            liked: {
+              rotateZ: initialRotation.z + Math.PI,
+              y: -1.5,
+
+              transition: { ease: "easeOut", duration: 0.5 },
+            },
+          }}
+          transition={{ ease: "easeOut", duration: 0.1 }}
         >
           <LikeButtonHeartMaterial isLiked={isLiked} isHover={isHover} />
         </motion.mesh>
