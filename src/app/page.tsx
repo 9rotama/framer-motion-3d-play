@@ -4,6 +4,12 @@ export default function Home() {
     <main className="flex flex-col justify-center text-center">
       <h1 className="mb-3 text-2xl">framer-motion-3d demos</h1>
       <ul className="flex flex-col gap-1">
+        <Link href="/hover-scale" className="bg-slate-600 text-slate-50 p-2">
+          HoverScaleDemo
+        </Link>
+        <Link href="/switch-color" className="bg-slate-600 text-slate-50 p-2">
+          SwitchColorDemo
+        </Link>
         <Link href="/like" className="bg-slate-600 text-slate-50 p-2">
           LikeButtonDemo
         </Link>
